@@ -193,6 +193,7 @@ const config = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+  // serverModuleFormat: 'cjs',
 };
 
 module.exports = config;

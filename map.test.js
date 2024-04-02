@@ -3,9 +3,10 @@ import MultimapPractice from "./map";
 
 describe('test', () => {
 
-    let newMap;
+    let newMap, newMap2;
     beforeEach(function () {
         newMap = new MultimapPractice;
+        newMap2 = new MultimapPractice;
     })
 
     test('should set values correctly', () => {
@@ -110,5 +111,29 @@ describe('test', () => {
         expect(newMap.has('bar', 1)).toBe(true);
     });
 
+    test('should merge two maps together', () => {
+        let newMap = new MultimapPractice([['foo', [1,2]]]);
+        let newMap2 = new MultimapPractice([['foo', [3,4]]]);
+
+        expect(MultimapPractice.union(newMap, newMap2)).toEqual(new MultimapPractice([['foo', [1, 2, 3, 4]]]));
+    });
+
+    test('should merge two maps with multiple properties', () => {
+        let newMap = new MultimapPractice([['foo', [1,2]], ['bar', [1,2]]]);
+        let newMap2 = new MultimapPractice([['foo', [3,4]], ['bar', [3,4]]]);
+        let results = MultimapPractice.union(newMap, newMap2);
+        let newMapMap = new MultimapPractice([['foo', [1, 2, 3, 4]], ['bar', [1, 2, 3, 4]]]);
+
+        expect(results).toEqual(newMapMap);
+    })
+
+    test('edge case 1', () => {
+        let newMap = new MultimapPractice([['foo', [1,2]], ['bar', [1,2]]]);
+        let newMap2 = new MultimapPractice();
+
+        const results = MultimapPractice.union(newMap, newMap2);
+
+        expect(results).toEqual(new MultimapPractice([['foo', [1, 2]], ['bar', [1, 2]]]));
+    })
 
 })

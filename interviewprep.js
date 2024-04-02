@@ -47,13 +47,6 @@ let setArr = [];
 
 // add
 function add(value) {
-    // includes is like a for loop
-        // if ( !setArr.includes(value) ) {
-        //     setArr.push(value);
-        // } else {
-        //     return;
-        // }
-
         if ( !setObj.hasOwnProperty(value) ) {
             setObj[value] = value;
             setArr.push(value);
@@ -65,8 +58,6 @@ add(5);
 add(10);
 console.log(setObj);
 console.log(setArr);
-// [5, 10]
-// delete
 
 function del(value) {
     if ( setObj.hasOwnProperty(value) ) {
@@ -76,14 +67,9 @@ function del(value) {
 }
 del(5);
 console.log(setArr);
-// has
+
 function has(value) {
     return setObj.hasOwnProperty(value);
 }
 
 console.log(has(5));
-// print
-
-//map
-//filter
-//reduce **

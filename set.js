@@ -14,7 +14,7 @@ class MySet {
             // "3": 1
             // set = [0, 3]
             // setObj = {"0": 0, "3": 1}
-            setObj[value] = this.set.length;
+            this.setObj[value] = this.set.length;
             this.set.push(value);
             // how can i store the index of the value im setting
             // return be set.push(0); = > length of 1
@@ -27,16 +27,17 @@ class MySet {
         }
         // set=[0,1,2,3,4]
         // setObj = {"0": 0, "1": 1, "2": 2, "3": 3, "4": 4 }
-        const index = setObj[value];
+        const index = this.setObj[value];
         // del(1);
         // index = 1;
-        if (index !== undefined ) {
+        if (index !== -1 ) {
             // this.set = splice(1,1)
             // this.set = [0,2,3,4]
             this.set = this.set.splice(index, 1);
             // need to delete key/value pair from setObj
             delete this.setObj[value];
-
+            console.log(this.setObj);
+            console.log(this.set);
             // setObj = {"0": 0, "2": 2, "3": 3, "4": 4 }
 
             // need to decrement index after deletion
@@ -46,7 +47,7 @@ class MySet {
                 // key = 1;
                 // key = 2;
                 // key = 3;
-                const key = set[i];
+                const key = this.set[i];
                 // "0": 0
                 // "2": 1
                 // "3": 2
@@ -65,15 +66,14 @@ class MySet {
 
 }
 
+// export default MySet;
 
-add("foo");
-add("foo");
-add("new");
-add([1,2,3]);
+const createMap = new MySet();
+createMap.add(9);
+createMap.add(2);
 
-del("new");
-console.log(del("hello"));
-console.log(get("foo"));
-console.log(mySet);
+console.log(createMap.has(2));
+createMap.del(2);
+console.log(createMap);
 
 //
